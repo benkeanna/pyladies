@@ -4,8 +4,6 @@ import hangmen_men
 words =  ['vločka','sníh','kopec']
 word = random.choice(words)
 string = '-' * len(word)
-print('kontrola1: ',word)
-print('kontrola2: ', string)
 
 mistakes = 0
 
