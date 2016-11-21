@@ -13,51 +13,38 @@ def exchange(x,y):
     play_field[x][y] = 'x'
     return play_field
 
-pozicex = 0
-pozicey = 0
-seznam_souradnic = [[0,0],[0,1],[0,2]]
-while True:
-    smer = input('Zadej směr pohybu (s,j,v,z) nebo konec: ')
-    # for souradnice in hraci_pole:
-    souradnice = ([pozicex,pozicey])
-    # potrebuji aby se to prepisovalo - jak - tzn aby se to vzdy ulozilo - hotovo problem z v na z a z j na s
+def pohyb(smer, seznam_souradnic):
     if smer == 'v':
         souradnice = ([pozicex,pozicey+1])
         pozicey += 1
         seznam_souradnic.append(souradnice)
         exchange(pozicex,pozicey)
-        for line in play_field:
-            for part in line:
-                print(part,end=' ')
-            print()
     elif smer =='z':
         souradnice = ([pozicex,pozicey-1])
         pozicey -= 1
         seznam_souradnic.append(souradnice)
         exchange(pozicex,pozicey)
-        for line in play_field:
-            for part in line:
-                print(part,end=' ')
-            print()
     elif smer == 'j':
         souradnice = ([pozicex + 1, pozicey])
         pozicex += 1
         seznam_souradnic.append(souradnice)
         exchange(pozicex,pozicey)
-        for line in play_field:
-            for part in line:
-                print(part,end=' ')
-            print()
     elif smer == 's':
         souradnice = ([pozicex - 1 ,pozicey])
         pozicex -= 1
         seznam_souradnic.append(souradnice)
         exchange(pozicex,pozicey)
-        for line in play_field:
-            for part in line:
-                print(part,end=' ')
-            print()
-    elif smer == 'konec':
-        break
     else:
         pass
+    return seznam_souradnic
+
+seznam_souradnic = []
+pozicex = 0
+pozicey = 0
+while True:
+    smer = input('Zadej směr pohybu (s,j,v,z) nebo konec: ')
+    pohyb(smer, seznam_souradnic)
+    for line in play_field:
+        for part in line:
+            print(part,end=' ')
+        print()
