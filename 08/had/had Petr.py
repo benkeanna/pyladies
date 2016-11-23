@@ -27,7 +27,7 @@ def pohyb(souradnice, strana):
     x, y = novy_bod
     if x < 0 or y < 0 or x >= 10 or y >= 10:
         raise ValueError('game over')
-    if novy_bod in souradnice:
+    in novy_bod in souradnice:
         raise ValueError('game over')
     souradnice.append(novy_bod)
     del souradnice[0]

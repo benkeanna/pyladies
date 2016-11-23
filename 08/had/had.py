@@ -1,8 +1,12 @@
-def nakresli_mapu(souradnice): # vytvoreni hraciho pole
+from random import randrange
+
+def nakresli_mapu(souradnice, ovoce): # vytvoreni hraciho pole
     print('-'*20)
     for radek in range(10):
         for sloupec in range(10):
-            if (sloupec, radek) in souradnice:
+            if (sloupec, radek) in ovoce:
+                print('?', end = ' ')
+            elif (sloupec, radek) in souradnice:
                 print('x', end = ' ')
             else:
                 print('.', end=' ')
@@ -11,7 +15,7 @@ def nakresli_mapu(souradnice): # vytvoreni hraciho pole
 souradnice = [(0,0),(0,1),(0,2)]
 nakresli_mapu(souradnice)
 
-def pohyb(souradnice, strana):
+def pohyb(souradnice, ovoce, strana):
     posledni_bod = souradnice[-1]
     x, y = posledni_bod
     if strana == 'j':
@@ -27,8 +31,16 @@ def pohyb(souradnice, strana):
     x, y = novy_bod
     if x < 0 or y < 0 or x >= 10 or y >= 10:
         raise ValueError('game over')
-    in novy_bod in souradnice:
+    if novy_bod in souradnice:
         raise ValueError('game over')
+    if novy_bod in ovoce:
+        ovoce.remove(novy_bod)
+        x = randrange(0,10)
+        y = randrange(0,10)
+        nove_ovoce = x,y
+        ovoce.append(nove_ovoce)
+    else:
+        del souradnice[0]
     souradnice.append(novy_bod)
     del souradnice[0]
 
