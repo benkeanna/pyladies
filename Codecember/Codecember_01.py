@@ -14,7 +14,20 @@ while True:
 
 ticket_number_array = list(ticket)
 
-if len(ticket_number_array) % 2 != 0 or ticket_number_array[0] == '0' or ticket_number % 3 != 0 or ticket_number % 5 != 0:
-    print('Lituji, tvůj lístek do polárního expresu neplatí.')
-else:
-    print('Gratuluji, můžeš nastoupit do polárního expresu.')
+possible_mistakes = {'even': 'musí být sudé', 'zero':'nesmí začínat nulou', 'divide3':'musí být dělitelné třemi','divide5':'musí být dělitelné pěti'}
+mistakes = []
+
+if len(ticket_number_array) % 2 != 0: # cislo musi mit sudy pocet cislic
+    mistakes.append('even')
+if ticket_number_array[0] == '0': # cislo nesmi zscinat nulou
+    mistakes.append('zero')
+if ticket_number % 3 != 0: # cislo musi byt delitene tremi
+    mistakes.append('divide3')
+if ticket_number % 5 != 0: # cislo musi byt delitelne peti
+    mistakes.append('divide5')
+
+for mistake in mistakes:
+    print('Lituji, číslo lístku', possible_mistakes[mistake])
+
+if mistakes == []:
+    print('Gratuluji, můžeš natoupit na polární expres!')
