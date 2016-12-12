@@ -1,0 +1,6 @@
+1. aby se asteroidy objevovali kdekolikv po hranì okna ø. 81
+2. aby se každý asterodi otáèel náhodnou rychlostí na libovolnou stranu class Asteroid
+3. aby každý asterodi mìl náhodnou rychlost class Asteroid
+
+bonus: class Asteroid, pøidat agrument Size ø. 76
+ø. 87 objects.append(Asteroid(window, velikost))
