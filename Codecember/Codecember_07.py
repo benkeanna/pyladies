@@ -1,6 +1,6 @@
 # Ježíšek na svém obstarožním počítači nemůže otevřít seznam lidí, kteří byli celý rok hodní.
 # Pokusem a omylem Ježíšek zjistil, že jeho systém neumí písmena ď, ť, ň a ě.
-# Pomoz mu napsat funkci,´která převede pole řetězců jmen a příjmení do bezpečné podoby tak, aby mohl seznam konečně otevřít. :)
+# Pomoz mu napsat funkci, která převede pole řetězců jmen a příjmení do bezpečné podoby tak, aby mohl seznam konečně otevřít. :)
 # Vstup: ["Petr Vopršal", "Dan Ťok", "Kateřina Pěkná", "Pavel Ďolík", "Bětka Ňoková"]
 
 list_of_behaves = ["Petr Vopršal", "Dan Ťok", "Kateřina Pěkná", "Pavel Ďolík", "Bětka Ňoková"]
