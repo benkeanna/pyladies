@@ -3,21 +3,14 @@
 # Pomoz mu napsat funkci,´která převede pole řetězců jmen a příjmení do bezpečné podoby tak, aby mohl seznam konečně otevřít. :)
 # Vstup: ["Petr Vopršal", "Dan Ťok", "Kateřina Pěkná", "Pavel Ďolík", "Bětka Ňoková"]
 
-import string
-
 list_of_behaves = ["Petr Vopršal", "Dan Ťok", "Kateřina Pěkná", "Pavel Ďolík", "Bětka Ňoková"]
+list_of_letters = {'ď':'d', 'Ď':'D', 'ť':'t', 'Ť':'T', 'ň':'n', 'Ň':'N', 'ě':'e'}
 new_list_of_behaves = []
-
-list_of_letters = {'ď': 'd','Ď': 'D','ť': 't','Ť': 'T','ň': 'n','Ň': 'N','ě': 'e'}
-print(list_of_letters)
 
 for name in list_of_behaves:
     name_list = []
     for letter in name:
-        if letter in list_of_letters.keys():
-            name_list.append(list_of_letters[letter])
-        else:
-            name_list.append(letter)
+        name_list.append(list_of_letters[letter]) if letter in list_of_letters.keys() else name_list.append(letter)
     new_name = ''.join(name_list)
     new_list_of_behaves.append(new_name)
 
