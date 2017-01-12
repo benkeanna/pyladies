@@ -1,3 +1,5 @@
+# vetsina kódu neni moje, jedna se o 'zapisky z lekce'
+
 import pyglet
 import math
 import random
