@@ -1,6 +1,7 @@
 # game bulls and cows in python 3
 
 import random
+
 field_size = 4 # pocet cislic, ktere hrac hada
 puzzle = random.sample(range(1, 10), field_size) # nahodne generovane cislice, ktere hrac hada
 number_of_guesses = 0 # pocet pokusu, ktery se bude zvetsovat po kazdem tahu hrace
@@ -27,6 +28,11 @@ class CheckInput: # kontrola, jestli je vstup 4-mistne cislo s ruznymi cislicemi
             number_of_occur.append(self.input.count(number)) # pocet vyskytu jednotlivych cislic ve vstupu
         return True if sum(number_of_occur) == len(str(self.input)) else False # suma vyskytu jednotlivých cislic ma byt stejna jako delka vstupu - kazda polozka je v nem jenom jednou
 
+def convert_str_input_into_list_of_int(guess_input):
+    guess = list(guess_input)
+    guess = [int(x) for x in guess]
+    return guess
+
 
 print('Welcome in game cows and bulls. ')
 while True:
@@ -41,8 +47,7 @@ while True:
             print('These are not four different digits')
             pass
 
-    guess = list(guess_input.input) # vytvoreni seznamu z inputu pro porovnani s puzzle
-    guess = [int(x) for x in guess] # pretypovani elementu v seznamu na cislice
+    guess = convert_str_input_into_list_of_int(guess_input.input)
 
     list_of_bulls = [i for i, j in zip(puzzle, guess) if i == j] # zjisteni vsech bulls
     bulls = len(list_of_bulls) # zjisteni pocet bulls
@@ -58,13 +63,13 @@ while True:
     else:
         pass
 
-if number_of_guesses < 6: # vyhodnoceni uspesnosti
+if number_of_guesses < 10: # vyhodnoceni uspesnosti
     success_rate = 'Awesome'
-elif number_of_guesses >= 6 and number_of_guesses < 10:
-    success_rate = 'Good'
 elif number_of_guesses >= 10 and number_of_guesses < 20:
+    success_rate = 'Good'
+elif number_of_guesses >= 20 and number_of_guesses < 30:
     success_rate = 'I quess it is good'
-elif number_of_guesses >= 20:
+elif number_of_guesses >= 30:
     success_rate = 'Not so good'
 
 print('Congratulation, you made it with',number_of_guesses,'guesses.',end=' ')
