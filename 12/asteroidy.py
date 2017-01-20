@@ -1,4 +1,4 @@
-# vetsina kódu neni moje, jedna se o 'zapisky z lekce'
+# most of the code is not mine - 'notes from lesson'
 
 import pyglet
 import math
@@ -68,7 +68,7 @@ class Spaceship(SpaceObject):
             rot = math.radians(self.rotation)
             self.x_speed = self.x_speed + dt * ACCELERATION * math.cos(rot)
             self.y_speed = self.y_speed + dt * ACCELERATION * math.sin(rot)
-        if pyglet.window.key.DOWN in pressed_keys: # nepovinne zpomalovani
+        if pyglet.window.key.DOWN in pressed_keys: # slowdown (originally not in game)
             rot = math.radians(self.rotation)
             self.x_speed = self.x_speed - dt * ACCELERATION * math.cos(rot)
             self.y_speed = self.y_speed - dt * ACCELERATION * math.sin(rot)
