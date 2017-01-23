@@ -9,13 +9,19 @@ if in different positions, they are "cows".
 import random
 
 puzzle_size = 4
-puzzle = random.sample(range(1, 10), puzzle_size)
+puzzle = random.sample(range(0, 10), puzzle_size)
 number_of_user_guesses = 0
-
+print(puzzle)
 
 class InputValidator:
     def __init__(self, user_input):
         self.input = user_input
+
+    def validate(self):
+        """Returns True if following checks passes.  """
+        return (self.check_input_digits_count()
+            and self.check_if_input_is_int()
+            and self.check_if_input_digits_are_unique())
 
     def check_if_input_is_int(self):
         """Returns True if user input type is integer, otherwise returns False.  """
@@ -28,10 +34,8 @@ class InputValidator:
 
     def check_input_digits_count(self):
         """Returns True if user input length is 4, otherwise returns False.  """
-        if len(str(self.input)) == 4:
-            return True
-        else:
-            return False
+        check =  len(str(self.input)) == 4
+        return check
 
     def check_if_input_digits_are_unique(self):
         """Returns True if every digit is in user input only once.
@@ -55,21 +59,16 @@ class MatchGuessAndPuzzle:
         self.guess = guess
 
     def get_number_of_bulls(self):
-        """Return number of "bulls" in current user input.
-        One "bull" for each match of same digits in the same position in puzzle and guess.
-        """
+        """Return number of "bulls" in current user input. """
         list_of_bulls = [i for i, j in zip(self.puzzle, self.guess) if i == j]
         bulls = len(list_of_bulls)
         return bulls
 
     def get_number_of_cows(self):
         """Returns number of "cows" in current user input.
-
-        One "cow" for every digits in user input which is present in the puzzle.
-        This metod includes "bulls", that has to be subtract from final count of "cows".
+        This metod includes "bulls", they have to be subtracted from count of "cows".
         """
-        list_of_bulls = [i for i, j in zip(self.puzzle, self.guess) if i == j]
-        bulls = len(list_of_bulls)
+        bulls = self.get_number_of_bulls()
         list_of_cows = set(self.puzzle) & set(self.guess)
         cows = (len(list_of_cows) - bulls)
         return cows
@@ -94,19 +93,18 @@ def evaluate_success_rate(number_of_user_guesses):
     return success_rate
 
 print('Welcome in game bulls and cows.')
-print('I generated four different digits for you, try to guess them.')
+print('I\'ve generated four different digits for you, try to guess them.')
+print(' If the matching digits are in their right positions, they are "bulls", if in different positions, they are "cows"')
 while True:
     while True:
         user_input = input('Enter four different digits ')
-        guess_input = InputValidator(user_input)
-        if (guess_input.check_input_digits_count()
-            and guess_input.check_if_input_is_int()
-            and guess_input.check_if_input_digits_are_unique()):
+        guess_input_validator = InputValidator(user_input)
+        if guess_input_validator.validate():
             break
         else:
             print('These are not four different digits')
 
-    guess = convert_str_input_into_list_of_int(guess_input.input)
+    guess = convert_str_input_into_list_of_int(user_input)
     game = MatchGuessAndPuzzle(puzzle, guess)
     bulls = game.get_number_of_bulls()
     cows = game.get_number_of_cows()
@@ -116,8 +114,6 @@ while True:
 
     if bulls == len(puzzle):
         break
-    else:
-        continue
 
 success_rate = evaluate_success_rate(number_of_user_guesses)
 print('Congratulation, you made it with',number_of_user_guesses,'guesses.',end=' ')
