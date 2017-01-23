@@ -11,7 +11,6 @@ import random
 puzzle_size = 4
 puzzle = random.sample(range(0, 10), puzzle_size)
 number_of_user_guesses = 0
-print(puzzle)
 
 class InputValidator:
     def __init__(self, user_input):
@@ -94,7 +93,7 @@ def evaluate_success_rate(number_of_user_guesses):
 
 print('Welcome in game bulls and cows.')
 print('I\'ve generated four different digits for you, try to guess them.')
-print(' If the matching digits are in their right positions, they are "bulls", if in different positions, they are "cows"')
+print('If the matching digits are in their right positions, they are "bulls", if in different positions, they are "cows"')
 while True:
     while True:
         user_input = input('Enter four different digits ')
